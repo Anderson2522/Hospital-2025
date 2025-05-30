@@ -1,29 +1,25 @@
+// Importa la clase JFrame del paquete javax.swing (para crear la ventana)
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import vistas.panelLogin;
+import javax.swing.*;
+import vistas.BannerPanel;
+import vistas.LoginView;
 
 public class Main {
+
     public static void main(String[] args) {
+        // Título y tamaño de la ventana
         JFrame miVentana = new JFrame();
         miVentana.setTitle("Hospital SCL");
         miVentana.setSize(1000, 800);
-        miVentana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         miVentana.setLayout(new BorderLayout());
+        miVentana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+        
+        // BannerPanel
+        BannerPanel panelBanner = new BannerPanel();
+        miVentana.add(panelBanner.getJPanel(), BorderLayout.WEST);
 
-        JPanel panelBanner = new JPanel();
-        panelBanner.setPreferredSize(new Dimension(500,800));
-        panelBanner.setSize(500, 800);
-        panelBanner.setOpaque(true);
-        panelBanner.setBackground(Color.BLACK);
-        miVentana.add(panelBanner, BorderLayout.WEST);
-
-
-        //Panel Login 
-        panelLogin panelLogin = new panelLogin();
-        miVentana.add(panelLogin.getView(), BorderLayout.CENTER);
+        LoginView panelLogin = new LoginView(miVentana); 
+        miVentana.add(panelLogin.getJPanel(), BorderLayout.CENTER);
 
         miVentana.setVisible(true);
     }
